@@ -9,8 +9,8 @@ import org.citrya.stellar.data.model.Contact;
 
 public class ContactDataService implements DataService<Contact> {
 	public static ContactDataService Instance = new ContactDataService(); 
-	private HashMap<Long, Contact> contacts = DatabaseClass.getContacts();
-	private static Long id = 1L; 
+	private HashMap<Integer, Contact> contacts = DatabaseClass.getContacts();
+	private static int id = 1; 
 	
 	@Override
 	public Contact create(Contact contact) {
@@ -21,7 +21,7 @@ public class ContactDataService implements DataService<Contact> {
 	}
 
 	@Override
-	public Contact delete(Long id) {
+	public Contact delete(int id) {
 		Contact contact = null;
 		if(contacts.containsKey(id)) {
 			contact = contacts.get(id);
@@ -44,11 +44,11 @@ public class ContactDataService implements DataService<Contact> {
 	}
 
 	@Override
-	public Contact get(Long id) {		
+	public Contact get(int id) {		
 		return contacts.get(id);
 	}	
 	
-	public List<Contact> getContactsForUser(Long userId) {
+	public List<Contact> getContactsForUser(int userId) {
 		List<Contact> contactList= new ArrayList<>();
 		for (Contact contact : contacts.values()) {
 			if(contact.getUserId() == userId) {

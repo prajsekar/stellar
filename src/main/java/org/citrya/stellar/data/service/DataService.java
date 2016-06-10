@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface DataService <T> {
 	T create(T object);
-	T delete(Long id);
+	T delete(int id);
 	T update(T object);
 	List<T> getAll();
-	T get(Long id);
+	T get(int id);
 }

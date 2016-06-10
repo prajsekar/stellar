@@ -19,19 +19,19 @@ import org.citrya.stellar.data.service.ContactDataService;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ContactService {	
 	@GET
-	public List<Contact> getContacts(@PathParam("userId") long userId) {
+	public List<Contact> getContacts(@PathParam("userId") int userId) {
 		return ContactDataService.Instance.getContactsForUser(userId);
 	}
 	
 	@GET
 	@Path("/{contactId}")
-	public Contact getContact(@PathParam("userId") long userId, @PathParam("contactId") long id) {
+	public Contact getContact(@PathParam("userId") int userId, @PathParam("contactId") int id) {
 		System.out.println("Contact id : " + id);
 		return ContactDataService.Instance.get(id);
 	}	
 	
 	@POST
-	public List<Contact> addContact(@PathParam("userId") long userId, List<Contact> contacts){
+	public List<Contact> addContact(@PathParam("userId") int userId, List<Contact> contacts){
 		for (Contact contact : contacts) {
 			contact.setUserId(userId);
 			ContactDataService.Instance.create(contact);
@@ -41,14 +41,14 @@ public class ContactService {
 	
 	@PUT
 	@Path("/{contactId}")
-	public Contact updateContact(@PathParam("userId") long userId, @PathParam("contactId") long id, Contact contact){
+	public Contact updateContact(@PathParam("userId") int userId, @PathParam("contactId") int id, Contact contact){
 		contact.setId(userId);
 		contact.setId(id);
 		return ContactDataService.Instance.update(contact);
 	}
 	
 	@DELETE	
-	public List<Contact> deleteContact(@PathParam("userId") long id) {
+	public List<Contact> deleteContact(@PathParam("userId") int id) {
 		List<Contact> contacts = ContactDataService.Instance.getContactsForUser(id);
 		for (Contact contact : contacts) {
 			ContactDataService.Instance.delete(contact.getId());
@@ -58,7 +58,7 @@ public class ContactService {
 	
 	@DELETE
 	@Path("/{contactId}")
-	public Contact deleteContact(@PathParam("userId") long userId, @PathParam("contactId") long id){	
+	public Contact deleteContact(@PathParam("userId") int userId, @PathParam("contactId") int id){	
 		return ContactDataService.Instance.delete(id);
 	}
 }

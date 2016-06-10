@@ -6,14 +6,14 @@ import org.citrya.stellar.data.model.Contact;
 import org.citrya.stellar.data.model.User;
 
 public class DatabaseClass {
-	private static HashMap<Long, Contact> contactTable = new HashMap<>();
-	private static HashMap<Long, User>  userTable = new HashMap<>();
+	private static HashMap<Integer, Contact> contactTable = new HashMap<>();
+	private static HashMap<Integer, User>  userTable = new HashMap<>();
 	
-	public static HashMap<Long, Contact> getContacts() {
+	public static HashMap<Integer, Contact> getContacts() {
 		return contactTable;
 	}
 	
-	public static HashMap<Long, User> getUsers() {
+	public static HashMap<Integer, User> getUsers() {
 		return userTable;
 	}
 }

@@ -33,20 +33,20 @@ public class UserService {
 	
 	@GET
 	@Path("/{userId}")
-	public User getUser(@PathParam("userId")long id) {
+	public User getUser(@PathParam("userId")int id) {
 		return userDS.get(id);
 	}
 	
 	@PUT
 	@Path("/{userId}")
-	public User updateUser(@PathParam("userId")long id, User user) {
+	public User updateUser(@PathParam("userId")int id, User user) {
 		user.setId(id);
 		return userDS.update(user);
 	}
 	
 	@DELETE
 	@Path("/{userId}")
-	public User deleteUser(@PathParam("userId")long id) {		
+	public User deleteUser(@PathParam("userId")int id) {		
 		return userDS.delete(id);
 	}
 	
