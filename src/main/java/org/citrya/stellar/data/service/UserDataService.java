@@ -45,7 +45,7 @@ public class UserDataService implements DataService<User> {
 	public User update(User user) {
 		Session session = SessionFactoryUtil.getSessionFactory().openSession();
 		User dbUser = (User)session.get(User.class, user.getId());
-		dbUser.setContacts(user.getContacts());
+		//dbUser.setContacts(user.getContacts());
 		dbUser.setFirstAccess(user.getFirstAccess());
 		dbUser.setFirstName(user.getFirstName());
 		dbUser.setFullName(user.getFullName());
@@ -80,7 +80,7 @@ public class UserDataService implements DataService<User> {
 		Session session = SessionFactoryUtil.getSessionFactory().openSession();
 		Contact contact = (Contact)session.get(Contact.class, id);
 		session.delete(contact);
-		User user = (User) session.get(User.class, contact.getUserId());
+		User user = (User) session.get(User.class, contact.getUser().getId());
 		return user;
 	}	
 }

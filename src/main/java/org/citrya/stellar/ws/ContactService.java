@@ -30,6 +30,7 @@ public class ContactService {
 		return ContactDataService.Instance.get(id);
 	}	
 	
+	
 	@POST
 	public List<Contact> addContact(@PathParam("userId") int userId, List<Contact> contacts){
 		for (Contact contact : contacts) {

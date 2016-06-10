@@ -1,7 +1,13 @@
 package test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.citrya.stellar.data.model.Contact;
 import org.citrya.stellar.data.model.User;
@@ -68,7 +74,7 @@ public class TestUserDataService {
 		String json = "{\"contacts\":[{\"type\":\"email\",\"value\":\"cnolan@gmail.com\"},{\"type\":\"mobile\",\"value\":\"77777777\"}],\"firstName\":\"Chris\",\"lastName\":\"Nolan\",\"name\":\"cnolan\"}";
 		Gson gson = new GsonBuilder().create();
 		User user = gson.fromJson(json, User.class);
-		
+	
 		System.out.println("FirstName : " + user.getFirstName());
 		System.out.println("FirstName : " + user.getLastName());
 		System.out.println("User id : " + user.getId());
@@ -92,9 +98,24 @@ public class TestUserDataService {
 			System.out.println("Type : " + contact.getType());
 			System.out.println("Value : " + contact.getValue());
 			System.out.println("ContactId : " + contact.getId());
-			System.out.println("UserId : " + contact.getUser().getId());
-		}		
+//			System.out.println("UserId : " + contact.getUserId());
+		}
+		
+		
+
+        
+        Marshaller marshaller;
+		try {
+			JAXBContext jc = JAXBContext.newInstance(User.class);
+			marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		     marshaller.marshal(user, System.out);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}      
 	}
+	
 	public static void main(String[] args) {
 		//testGetAll();
 		//testGet();
