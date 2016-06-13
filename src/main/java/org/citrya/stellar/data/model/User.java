@@ -1,7 +1,6 @@
 package org.citrya.stellar.data.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -96,5 +95,10 @@ public class User {
 	}	
 	public void addContact(Contact contact) {
 		this.contacts.add(contact);
+	}
+	
+	@Override
+	public String toString() {
+		return("[User="+this.name+"]");
 	}
 }

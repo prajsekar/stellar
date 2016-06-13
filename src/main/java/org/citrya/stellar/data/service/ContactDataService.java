@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-import org.citrya.stellar.data.DatabaseClass;
 import org.citrya.stellar.data.model.Contact;
 import org.citrya.stellar.data.model.User;
 import org.citrya.stellar.hibernate.SessionFactoryUtil;
@@ -15,9 +14,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class ContactDataService implements DataService<Contact> {
-	public static ContactDataService Instance = new ContactDataService(); 
-	private HashMap<Integer, Contact> contacts = DatabaseClass.getContacts();
-	private static int id = 1; 
+	public static ContactDataService Instance = new ContactDataService();	 
 	
 	@Override
 	public Contact create(Contact contact) {

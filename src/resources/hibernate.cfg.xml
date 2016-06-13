@@ -17,5 +17,6 @@
         <property name="hbm2ddl.auto">update</property>		
         <mapping class ="org.citrya.stellar.data.model.User" />
         <mapping class ="org.citrya.stellar.data.model.Contact" />
+        <mapping class ="org.citrya.stellar.data.model.Event" />
     </session-factory>
 </hibernate-configuration>
