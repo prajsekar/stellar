@@ -80,7 +80,7 @@ public class UserDataService implements DataService<User> {
 		Session session = SessionFactoryUtil.getSessionFactory().openSession();
 		Contact contact = (Contact)session.get(Contact.class, id);
 		session.delete(contact);
-		User user = (User) session.get(User.class, contact.getUser().getId());
+		User user = (User) session.get(User.class, contact.getUser().getUid());
 		return user;
 	}	
 }

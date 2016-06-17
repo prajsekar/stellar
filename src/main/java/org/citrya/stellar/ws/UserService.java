@@ -39,8 +39,8 @@ public class UserService {
 	
 	@PUT
 	@Path("/{userId}")
-	public User updateUser(@PathParam("userId")int id, User user) {
-		user.setId(id);
+	public User updateUser(@PathParam("userId")String id, User user) {
+		user.setUid(id);
 		return userDS.update(user);
 	}
 	

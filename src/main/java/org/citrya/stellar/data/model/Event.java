@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,10 +24,39 @@ public class Event {
 	private int id;
 	private String name;
 	private String template;
-	
 	@XmlTransient	
 	private String properties;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="USER_ID", nullable = false)
+	@XmlTransient
+	private User user;
+	
+	@Column(name="USER_ID", updatable=false, insertable=false)	
+	private int userId;	
+		
+	@XmlTransient	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getUserId() {
+		if(user != null) {
+			userId = user.getId();
+		}
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	/*
 	@Column(name="USER_ID", nullable=false)	
 	private int userId; 
 	
@@ -38,7 +66,7 @@ public class Event {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
+	}*/
 /*
 	@ManyToOne
 	@JoinColumn(name="USER_ID", nullable=false)

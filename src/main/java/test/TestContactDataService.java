@@ -18,7 +18,7 @@ public class TestContactDataService {
 	}
 	
 	public static void testCreate() {
-		 String jsonStr = "{\"type\":\"email\",\"value\":\"jamesb@gmail.com\",\"userId\":\"45\"}";
+		 String jsonStr = "{\"type\":\"email\",\"value\":\"jamesb@gmail.com\",\"userId\":\"1\"}";
 		 Contact contact = (Contact) jsonToClass(jsonStr, Contact.class);
 		 
 		 dataservice.create(contact);
@@ -26,13 +26,13 @@ public class TestContactDataService {
 	}
 	
 	public static void testDelete() {
-		dataservice.delete(67);
-		Contact contact = dataservice.get(67);		
+		dataservice.delete(2);
+		Contact contact = dataservice.get(2);		
 		System.out.println(contact);
 	}
 	
 	public static void testGet() {
-		Contact contact = dataservice.get(63);
+		Contact contact = dataservice.get(2);
 		System.out.println(contact);		 
 	}
 	
@@ -44,13 +44,13 @@ public class TestContactDataService {
 	}
 	
 	public static void testUpdate() {
-		Contact contact = dataservice.get(63);
+		Contact contact = dataservice.get(2);
 		contact.setValue("bondjbond");
 		System.out.println(dataservice.update(contact));
 	}
 	
 	public static void testGetContactForUser() {
-		List<Contact> contacts = dataservice.getContactsForUser(43);
+		List<Contact> contacts = dataservice.getContactsForUser(4);
 		for (Contact contact : contacts) {
 			System.out.println(contact);			 
 		}
@@ -62,6 +62,6 @@ public class TestContactDataService {
 		//testGet();
 		//testGetAll();
 		//testUpdate();
-		//testGetContactForUser();
+		testGetContactForUser();
 	}
 }

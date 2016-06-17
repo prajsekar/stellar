@@ -16,9 +16,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 public class User {
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
 	private int id;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Column(unique=true, nullable=false)
+	private String uid;
+
 	private String name;
 	private String fullName;
 	private String firstName;
@@ -49,12 +62,12 @@ public class User {
 		this.contacts = contacts;
 	}
 
-	public int getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setId(int userId) {
-		this.id = userId;
+	public void setUid(String userId) {
+		this.uid = userId;
 	}
 	
 	public String getName() {

@@ -1,11 +1,7 @@
 package org.citrya.stellar.data.service;
 
-import java.awt.dnd.DnDConstants;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-
 
 import org.citrya.stellar.data.model.Contact;
 import org.citrya.stellar.data.model.User;

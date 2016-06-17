@@ -13,10 +13,14 @@ public class EventDataService implements DataService<Event>{
 	@Override
 	public Event create(Event event) {
 		Session session = SessionFactoryUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.save(event);
-		session.getTransaction().commit();
-		session.close();
+		User user = (User)session.get(User.class, event.getUserId());
+		if(user != null) {
+			event.setUser(user);
+			session.beginTransaction();
+			session.save(event);
+			session.getTransaction().commit();
+			session.close();
+		}		
 		return event;
 	}
 

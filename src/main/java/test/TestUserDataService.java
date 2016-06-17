@@ -2,6 +2,7 @@ package test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -35,7 +36,7 @@ public class TestUserDataService {
 	
 	public static void testGet() {
 		System.out.println("-------------- Test Get-----------");
-		User user = userDS.get(4);
+		User user = userDS.get(3);
 		System.out.println("FirstName : " + user.getFirstName());
 		System.out.println("FirstName : " + user.getLastName());
 		System.out.println("User id : " + user.getId());
@@ -43,12 +44,12 @@ public class TestUserDataService {
 	
 	public static void testDelete() {
 		System.out.println("-------------- Test Delete-----------");
-		User user = userDS.delete(4);
+		User user = userDS.delete(3);
 		System.out.println("Deleted FirstName : " + user.getFirstName());
 		System.out.println("Deleted LastName : " + user.getLastName());
 		System.out.println("Deleted User id : " + user.getId());
 		
-		User user1 = userDS.get(4);
+		User user1 = userDS.get(3);
 		if(user1 == null) {
 			System.out.println("Record deleted");
 		}
@@ -61,7 +62,7 @@ public class TestUserDataService {
 	
 	public static void testUpdate() {
 		System.out.println("-------------- Test Update -----------");
-		User user = userDS.get(2);
+		User user = userDS.get(3);
 		user.setFirstName("FirstName");
 		user.setLastName("LastName");
 		user = userDS.update(user);
@@ -71,9 +72,10 @@ public class TestUserDataService {
 	}
 	
 	public static User jsonToClass() {
-		String json = "{\"contacts\":[{\"type\":\"email\",\"value\":\"cnolan@gmail.com\"},{\"type\":\"mobile\",\"value\":\"77777777\"}],\"firstName\":\"Chris\",\"lastName\":\"Nolan\",\"name\":\"cnolan\"}";
+		String json = "{\"contacts\":[{\"type\":\"email\",\"value\":\"cnolan@gmail.com\"},{\"type\":\"mobile\",\"value\":\"77777777\"}],\"firstName\":\"Chris\",\"lastName\":\"Nolan\",\"name\":\"cnolan\",\"uid\":\"cnolan\"}";
 		Gson gson = new GsonBuilder().create();
 		User user = gson.fromJson(json, User.class);
+		user.setUid(user.getUid()+new Date().toString());		
 	
 		System.out.println("FirstName : " + user.getFirstName());
 		System.out.println("FirstName : " + user.getLastName());
@@ -119,9 +121,9 @@ public class TestUserDataService {
 	public static void main(String[] args) {
 		//testGetAll();
 		//testGet();
-		//testDelete();
+		testDelete();
 		//testUpdate();
-		testCreate();
+		//testCreate();
 		//jsonToClass();
 	}
 }
