@@ -29,7 +29,13 @@ public class UserService {
 	@POST
 	public User addUser(User user) {
 		return userDS.create(user);
-	}	
+	}
+	
+	@POST
+	@Path("/validate")
+	public User validate(User user) {
+		return userDS.validateUser(user);
+	}
 	
 	@GET
 	@Path("/{userId}")

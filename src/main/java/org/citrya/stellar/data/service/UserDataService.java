@@ -6,6 +6,7 @@ import java.util.List;
 import org.citrya.stellar.data.model.Contact;
 import org.citrya.stellar.data.model.User;
 import org.citrya.stellar.hibernate.SessionFactoryUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class UserDataService implements DataService<User> {
@@ -81,6 +82,32 @@ public class UserDataService implements DataService<User> {
 		Contact contact = (Contact)session.get(Contact.class, id);
 		session.delete(contact);
 		User user = (User) session.get(User.class, contact.getUser().getUid());
+		session.close();
 		return user;
 	}	
+	
+	public User getById(String uid) {
+		Session session = SessionFactoryUtil.getSessionFactory().openSession();
+		String hql = "FROM User user WHERE user.uid = :uid";
+		Query query = session.createQuery(hql);
+		query.setParameter("uid", uid);
+		@SuppressWarnings("rawtypes")
+		List results = query.list();
+		User user = null;
+		if(results != null && results.size() != 0){
+			user = (User) results.get(0);
+		}
+		return user;
+	}
+	
+	public User validateUser(User user) {
+		User dbUser = null;
+		if(user.getUid() != null) {
+			dbUser = getById(user.getUid());
+		}
+		if(dbUser == null){
+			dbUser = create(user);
+		}
+		return dbUser;	
+	}
 }

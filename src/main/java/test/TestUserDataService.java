@@ -118,12 +118,36 @@ public class TestUserDataService {
 		}      
 	}
 	
+	public static void TestGetUserById() {
+		User user = userDS.getById("cnolan1");
+		System.out.println("FirstName : " + user.getFirstName());
+		System.out.println("FirstName : " + user.getLastName());
+		System.out.println("User id : " + user.getId());
+	}
+	
+	public static void testValidateUser() {
+		User dbUser = userDS.get(1);
+		User user = userDS.validateUser(dbUser);
+		System.out.println("FirstName : " + user.getFirstName());
+		System.out.println("FirstName : " + user.getLastName());
+		System.out.println("User id : " + user.getId());
+		
+		User newUser = new User();
+		newUser.setUid("kBacon1");
+		newUser.setFirstName("Kevin");
+		newUser = userDS.validateUser(newUser);
+		System.out.println("FirstName : " + newUser.getFirstName());
+		System.out.println("FirstName : " + newUser.getLastName());
+		System.out.println("User id : " + newUser.getId());		
+	}
 	public static void main(String[] args) {
 		//testGetAll();
 		//testGet();
-		testDelete();
+		//testDelete();
 		//testUpdate();
 		//testCreate();
 		//jsonToClass();
+		//TestGetUserById();
+		testValidateUser();
 	}
 }
